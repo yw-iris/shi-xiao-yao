@@ -587,7 +587,7 @@ h2.title b.r{color:var(--crimson)}
     <div class="sec-tag"><span class="id">SECTOR 06</span> AFFECTION // 亲密度</div>
     <h2 class="title">正在检测 <b class="r">宿主好感值</b></h2>
     <div class="aff-hint"><span class="blink">▶</span> 点击话术体验，即可增加亲密值 · 达成对应资料成就</div>
-    <p class="lead">话术已打乱加密 · 你点得多的那一派，将决定最终解锁的结局 · 解锁瞬间揭晓阵营。</p>
+    <p class="lead">话术已打乱加密 · <b class="r">选满 5 条</b>即按阵营条数比例判定结局并传送终局 · 解锁瞬间揭晓阵营。</p>
     <div class="aff-wrap">
       <div>
         <button class="aff-q" data-fx data-add="10" data-camp="病恋" data-ach="被需要的痕迹" data-log='已记录：“我在你身上留下的痕迹——你说的你需要我”'><span class="tag">A.</span>“我在你身上留下的痕迹——你说的，你需要我”<span class="gain">亲密度 +10</span></button>
@@ -817,7 +817,7 @@ function toast(msg,red){
       cxV.textContent='?';cbV.textContent='?';
       [cxBar,cbBar].forEach(b2=>{b2.classList.add('unknown');b2.style.width='32%';});
       campTip.classList.remove('ok');
-      campTip.textContent='数据加密 · 解析中 ('+(a+b)+'/'+btns.length+')';
+      campTip.textContent='数据加密 · 已选 '+(a+b)+' 条 / 满 5 条判定';
       return null;
     }
     cxBar.classList.remove('unknown');cbBar.classList.remove('unknown');
@@ -834,14 +834,17 @@ function toast(msg,red){
     document.getElementById('aff').classList.add('reveal');
     paintCamp();
     const c=CAMP[camp],a=CAMP['虚恋'].n,b=CAMP['病恋'].n;
+    const tot=a+b||1,pa=Math.round(a/tot*100),pb=100-pa;
     campEnd.className='camp-end show '+c.cls;
-    ceTitle.textContent=camp+' ENDING 已解锁 · 判定 虚恋 '+a+' : '+b+' 病恋';
+    ceTitle.textContent=camp+' ENDING 已解锁 · 判定 虚恋 '+a+' : '+b+' 病恋（'+pa+'% : '+pb+'%）';
     const mk=(d,cls)=>'<a class="'+cls+'" href="'+d.url+'"'+(d.anchor?'':' target="_blank" rel="noopener"')+
       '><span class="ico">▣</span><span>'+d.nm+'</span><span class="go">'+(d.anchor?'↓':'↗')+'</span></a>';
     campLinks.innerHTML=c.docs.map(d=>mk(d,'camp-link')).join('');
     endLinks.innerHTML=c.docs.map(d=>mk(d,'doc-link '+c.cls)).join('');
     endCamp.textContent=camp+' HE';
-    endCampTx2.textContent=camp+'结局已写入存档';
+    endCampTx2.textContent=camp+'结局已写入存档 · 阵营占比 '+Math.max(pa,pb)+'%';
+    // 判定完成即传送终局页
+    setTimeout(()=>{const t=document.getElementById('end');t&&t.scrollIntoView({behavior:'smooth'});},1500);
     const al=document.createElement('div');al.className='ln';
     al.style.color=(camp==='虚恋'?'var(--cyan)':'var(--crimson)');
     al.textContent='> 倾向判定：'+camp+' 线主导（'+c.n+' 条）· 解锁'+camp+'结局';
@@ -869,11 +872,12 @@ function toast(msg,red){
       const ln=document.createElement('div');ln.className='ln';
       ln.textContent='> 亲密值 +'+add+' · 达成「'+ach+'」('+got+'/'+btns.length+')';
       log.appendChild(ln);
-      const lead=paintCamp();
-      if(!ending){
+      paintCamp();
+      // 选满 5 条即按阵营条数比例判定结局
+      if(!ending&&got>=5){
         const a=CAMP['虚恋'].n,b=CAMP['病恋'].n;
-        if(a>=3&&a>b)lockEnding('虚恋');
-        else if(b>=3&&b>a)lockEnding('病恋');
+        if(a>b)lockEnding('虚恋');
+        else if(b>a)lockEnding('病恋');
       }
       if(got>=btns.length){
         const al=document.createElement('div');al.className='ln';
