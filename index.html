@@ -843,8 +843,8 @@ function toast(msg,red){
     endLinks.innerHTML=c.docs.map(d=>mk(d,'doc-link '+c.cls)).join('');
     endCamp.textContent=camp+' HE';
     endCampTx2.textContent=camp+'结局已写入存档 · 阵营占比 '+Math.max(pa,pb)+'%';
-    // 判定完成即传送终局页
-    setTimeout(()=>{const t=document.getElementById('end');t&&t.scrollIntoView({behavior:'smooth'});},1500);
+    // 判定完成即刻传送终局页
+    setTimeout(()=>{const t=document.getElementById('end');t&&t.scrollIntoView({behavior:'smooth'});},350);
     const al=document.createElement('div');al.className='ln';
     al.style.color=(camp==='虚恋'?'var(--cyan)':'var(--crimson)');
     al.textContent='> 倾向判定：'+camp+' 线主导（'+c.n+' 条）· 解锁'+camp+'结局';
