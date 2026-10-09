@@ -269,6 +269,55 @@ h2.title b.r{color:var(--crimson)}
 .ach.on::before{content:'◈';filter:none;animation:blink .6s steps(2) 3}
 .aff-log{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:14px;min-height:54px;line-height:1.8}
 .aff-log .ln{color:var(--cyan)}
+/* 阵营：虚恋 / 病恋 */
+.cx-tx{color:var(--cyan);font-weight:700}
+.cb-tx{color:var(--crimson);font-weight:700}
+.camp-h{display:flex;align-items:center;gap:10px;margin:26px 0 12px;font-family:var(--mono);
+  font-size:12px;letter-spacing:.22em;text-transform:uppercase}
+.camp-h:first-child{margin-top:0}
+.camp-h .dot{width:8px;height:8px;flex:none;border-radius:50%}
+.camp-h.cx{color:var(--cyan)}
+.camp-h.cx .dot{background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.camp-h.cb{color:var(--crimson)}
+.camp-h.cb .dot{background:var(--crimson);box-shadow:0 0 12px var(--crimson)}
+.camp-h .cn{margin-left:auto;opacity:.7;letter-spacing:.12em}
+.aff-q.cx{border-left:2px solid var(--cyan)}
+.aff-q.cb{border-left:2px solid var(--crimson)}
+.aff-q.cx .gain{color:var(--cyan)}
+.aff-q.cx:hover{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,229,255,.18)}
+.aff-q.cx.done{border-color:var(--cyan)}
+.aff-q.cx.done .gain{color:var(--cyan)}
+.aff-q.cb.done{border-color:var(--crimson)}
+.aff-q.cb.done .gain{color:var(--crimson)}
+.camp-head{display:flex;align-items:center;justify-content:space-between;margin-top:18px;gap:10px}
+.camp-head .lab{font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--cyan);text-transform:uppercase}
+.camp-tip{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--dim);white-space:nowrap}
+.camp-vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.camp-side .cs-top{display:flex;justify-content:space-between;font-family:var(--body);font-size:13px;
+  letter-spacing:.12em;color:var(--cyan)}
+.camp-side.b .cs-top{color:var(--crimson)}
+.cs-bar{height:8px;background:rgba(255,255,255,.06);border:1px solid var(--line);margin-top:6px;position:relative;overflow:hidden}
+.cs-bar i{position:absolute;left:0;top:0;bottom:0;width:0;transition:width .6s cubic-bezier(.16,1,.3,1)}
+.camp-side .cs-bar i{background:linear-gradient(90deg,var(--cyan),#8af6ff);box-shadow:0 0 12px rgba(0,229,255,.6)}
+.camp-side.b .cs-bar i{background:linear-gradient(90deg,var(--magenta),var(--crimson));box-shadow:0 0 12px rgba(255,36,64,.6)}
+.camp-end{margin-top:16px;border:1px dashed var(--line);padding:14px;display:none}
+.camp-end.show{display:block}
+.camp-end .ce-lab{font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:var(--dim);text-transform:uppercase}
+.ce-title{font-family:var(--body);font-size:clamp(14px,1.8vw,17px);letter-spacing:.06em;margin-top:8px;color:#fff}
+.camp-end.cx{border:1px solid var(--cyan);background:rgba(0,229,255,.06);box-shadow:0 0 24px rgba(0,229,255,.12)}
+.camp-end.cx .ce-title{color:var(--cyan);text-shadow:0 0 12px rgba(0,229,255,.45)}
+.camp-end.cb{border:1px solid var(--crimson);background:rgba(255,36,64,.07);box-shadow:0 0 24px rgba(255,36,64,.14)}
+.camp-end.cb .ce-title{color:var(--crimson);text-shadow:0 0 12px rgba(255,36,64,.45)}
+.camp-link{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--mono);
+  font-size:12px;letter-spacing:.14em;color:var(--cyan);border:1px solid var(--line);
+  background:rgba(0,229,255,.05);padding:9px 16px;margin-top:12px;cursor:none;transition:all .3s}
+.camp-link .ico{color:var(--crimson)}
+.camp-link .go{opacity:.7;transition:transform .3s}
+.camp-link:hover{color:#fff;border-color:var(--cyan);background:rgba(0,229,255,.12);box-shadow:0 0 20px rgba(0,229,255,.3)}
+.camp-link:hover .go{transform:translate(2px,-2px);opacity:1}
+.camp-end.cb .camp-link{color:var(--crimson);background:rgba(255,36,64,.06);border-color:var(--line-red)}
+.camp-end.cb .camp-link:hover{color:#fff;border-color:var(--crimson);background:rgba(255,36,64,.16);
+  box-shadow:0 0 20px rgba(255,36,64,.32)}
 .he-badge{margin-top:16px;display:none;border:1px solid var(--crimson);padding:14px;text-align:center;
   font-family:var(--mono);letter-spacing:.2em;color:var(--crimson);animation:pulseRed 1.4s ease-in-out infinite}
 .he-badge.show{display:block}
@@ -537,24 +586,39 @@ h2.title b.r{color:var(--crimson)}
     <div class="sec-tag"><span class="id">SECTOR 06</span> AFFECTION // 亲密度</div>
     <h2 class="title">正在检测 <b class="r">宿主好感值</b></h2>
     <div class="aff-hint"><span class="blink">▶</span> 点击话术体验，即可增加亲密值 · 达成对应资料成就</div>
-    <p class="lead">每条话术对应一个资料成就 · 集齐 7 个成就 + 亲密值 100% 解锁 HE 结局。</p>
+    <p class="lead">话术分 <b class="cx-tx">虚恋</b> / <b class="cb-tx">病恋</b> 两派 · 你点得多的那一派，将决定最终解锁的结局。</p>
     <div class="aff-wrap">
       <div>
-        <button class="aff-q" data-fx data-add="10" data-ach="新奇感" data-log='已记录：“深怕落下一点关于我的——等待你自己去发现 才会有新奇感”'><span class="tag">A.</span>“深怕落下一点关于我的 可我偏不要——等待你自己去发现，才会有新奇感”<span class="gain">亲密度 +10</span></button>
-        <button class="aff-q" data-fx data-add="10" data-ach="被需要的痕迹" data-log='已记录：“我在你身上留下的痕迹——你说的你需要我”'><span class="tag">B.</span>“我在你身上留下的痕迹——你说的，你需要我”<span class="gain">亲密度 +10</span></button>
-        <button class="aff-q" data-fx data-add="15" data-ach="来之不易的吻" data-log='已记录：“是担心这个吻来的太过容易 怕自己应付不来吗”'><span class="tag">C.</span>“是担心这个吻来的太过容易，怕自己应付不来吗”<span class="gain">亲密度 +15</span></button>
-        <button class="aff-q" data-fx data-add="15" data-ach="哑巴游戏" data-log='已记录：“你想当哑巴 我不介意做的更过分一点”'><span class="tag">D.</span>“你想当哑巴，我不介意做得更过分一点”<span class="gain">亲密度 +15</span></button>
-        <button class="aff-q" data-fx data-add="15" data-ach="危险心跳" data-log='已记录：“如果我扼住你的咽喉 下意识的你应该会求饶吧”'><span class="tag">E.</span>“如果我扼住你的咽喉收紧，下意识的你应该会求饶吧，这样狼狈”<span class="gain">亲密度 +15</span></button>
-        <button class="aff-q" data-fx data-add="15" data-ach="十指相扣" data-log='已记录：“我能随时碾着你的手将你踩下去 也能拉着你的手 十指相扣”'><span class="tag">F.</span>“我能随时碾着你的手将你踩下去，也能拉着你的手，十指相扣”<span class="gain">亲密度 +15</span></button>
-        <button class="aff-q" data-fx data-add="20" data-ach="卸下防御" data-log='已记录：“你怕自己做不到 然后被指责 把错误都揽到自己身上 形成防御”'><span class="tag">G.</span>“你怕自己做不到，然后被指责——把错误都揽到自己身上，形成防御”<span class="gain">亲密度 +20</span></button>
+        <div class="camp-h cx" data-fx><span class="dot"></span><span class="nm">虚恋 · ILLUSORY LOVE</span><span class="cn">已选 <span id="cxN">0</span> / 3</span></div>
+        <button class="aff-q cx" data-fx data-add="10" data-camp="虚恋" data-ach="新奇感" data-log='已记录：“深怕落下一点关于我的——等待你自己去发现 才会有新奇感”'><span class="tag">A.</span>“深怕落下一点关于我的 可我偏不要——等待你自己去发现，才会有新奇感”<span class="gain">亲密度 +10</span></button>
+        <button class="aff-q cx" data-fx data-add="15" data-camp="虚恋" data-ach="来之不易的吻" data-log='已记录：“是担心这个吻来的太过容易 怕自己应付不来吗”'><span class="tag">C.</span>“是担心这个吻来的太过容易，怕自己应付不来吗”<span class="gain">亲密度 +15</span></button>
+        <button class="aff-q cx" data-fx data-add="20" data-camp="虚恋" data-ach="卸下防御" data-log='已记录：“你怕自己做不到 然后被指责 把错误都揽到自己身上 形成防御”'><span class="tag">G.</span>“你怕自己做不到，然后被指责——把错误都揽到自己身上，形成防御”<span class="gain">亲密度 +20</span></button>
+
+        <div class="camp-h cb" data-fx><span class="dot"></span><span class="nm">病恋 · MORBID LOVE</span><span class="cn">已选 <span id="cbN">0</span> / 4</span></div>
+        <button class="aff-q cb" data-fx data-add="10" data-camp="病恋" data-ach="被需要的痕迹" data-log='已记录：“我在你身上留下的痕迹——你说的你需要我”'><span class="tag">B.</span>“我在你身上留下的痕迹——你说的，你需要我”<span class="gain">亲密度 +10</span></button>
+        <button class="aff-q cb" data-fx data-add="15" data-camp="病恋" data-ach="哑巴游戏" data-log='已记录：“你想当哑巴 我不介意做的更过分一点”'><span class="tag">D.</span>“你想当哑巴，我不介意做得更过分一点”<span class="gain">亲密度 +15</span></button>
+        <button class="aff-q cb" data-fx data-add="15" data-camp="病恋" data-ach="危险心跳" data-log='已记录：“如果我扼住你的咽喉 下意识的你应该会求饶吧”'><span class="tag">E.</span>“如果我扼住你的咽喉收紧，下意识的你应该会求饶吧，这样狼狈”<span class="gain">亲密度 +15</span></button>
+        <button class="aff-q cb" data-fx data-add="15" data-camp="病恋" data-ach="十指相扣" data-log='已记录：“我能随时碾着你的手将你踩下去 也能拉着你的手 十指相扣”'><span class="tag">F.</span>“我能随时碾着你的手将你踩下去，也能拉着你的手，十指相扣”<span class="gain">亲密度 +15</span></button>
       </div>
       <div class="aff-panel" data-fx id="affPanel">
         <div class="lab">// AFFECTION LEVEL</div>
         <div class="aff-num"><span id="affNum">0</span><span class="pc">%</span></div>
         <div class="aff-bar"><i id="affBar"></i><div class="ticks"></div></div>
+        <div class="camp-head"><span class="lab">// CAMP TENDENCY · 阵营倾向</span><span class="camp-tip" id="campTip">倾向未定</span></div>
+        <div class="camp-vs">
+          <div class="camp-side"><div class="cs-top"><span>虚恋</span><span id="cxV">0</span></div><div class="cs-bar"><i id="cxBar"></i></div></div>
+          <div class="camp-side b"><div class="cs-top"><span>病恋</span><span id="cbV">0</span></div><div class="cs-bar"><i id="cbBar"></i></div></div>
+        </div>
         <div class="ach-head"><span class="lab">// DATA ACHIEVEMENTS</span><span class="ach-count" id="achCount">0 / 7</span></div>
         <div class="ach-row" id="achRow"></div>
         <div class="aff-log" id="affLog"><span class="ln">&gt; 等待宿主输入话术…</span></div>
+        <div class="camp-end" id="campEnd">
+          <div class="ce-lab">// ENDING UNLOCKED</div>
+          <div class="ce-title" id="ceTitle"></div>
+          <a class="camp-link" id="campLink" target="_blank" rel="noopener" style="display:none">
+            <span class="ico">▣</span><span id="campLinkTx"></span><span class="go">↗</span>
+          </a>
+        </div>
         <div class="he-badge" id="heBadge">检测到宿主对 npc 亲密度达 100%<br>解锁 HE 结局 · 正在传送回主世界</div>
       </div>
     </div>
@@ -590,8 +654,13 @@ h2.title b.r{color:var(--crimson)}
   <section id="end">
     <div class="frame"></div><span class="corner2 tl"></span><span class="corner2 br"></span>
     <div class="sec-tag" style="justify-content:center"><span class="id">SECTOR 08</span> ENDING // 达成HE</div>
-    <h2>达成 <span class="g">HE</span></h2>
-    <p class="line">亲密度抵达 <em class="r">100%</em> 阈值。<br>He 结局已写入存档 · <em>主世界通道开启</em>。</p>
+    <h2>达成 <span class="g" id="endCamp">HE</span></h2>
+    <p class="line">亲密度抵达 <em class="r">100%</em> 阈值。<br><em id="endCampTx2">结局已写入存档</em> · <em>主世界通道开启</em>。</p>
+    <div class="doc-links">
+      <a class="doc-link" id="endLink" target="_blank" rel="noopener" style="display:none">
+        <span class="ico">▣</span><span id="endLinkTx"></span><span class="go">↗</span>
+      </a>
+    </div>
     <div class="farewell">
       <span>「我舍不得她」</span>
       <span>「欢迎您下次光临」</span>
@@ -705,9 +774,55 @@ function toast(msg,red){
   const num=document.getElementById('affNum'),bar=document.getElementById('affBar'),
         log=document.getElementById('affLog'),badge=document.getElementById('heBadge'),
         panel=document.getElementById('affPanel'),
-        achRow=document.getElementById('achRow'),achCount=document.getElementById('achCount');
+        achRow=document.getElementById('achRow'),achCount=document.getElementById('achCount'),
+        campEnd=document.getElementById('campEnd'),ceTitle=document.getElementById('ceTitle'),
+        campLink=document.getElementById('campLink'),campLinkTx=document.getElementById('campLinkTx'),
+        campTip=document.getElementById('campTip'),
+        cxN=document.getElementById('cxN'),cbN=document.getElementById('cbN'),
+        cxV=document.getElementById('cxV'),cbV=document.getElementById('cbV'),
+        cxBar=document.getElementById('cxBar'),cbBar=document.getElementById('cbBar'),
+        endCamp=document.getElementById('endCamp'),endLink=document.getElementById('endLink'),
+        endLinkTx=document.getElementById('endLinkTx'),endCampTx2=document.getElementById('endCampTx2');
   let val=0,got=0;
+  // 阵营配置：结局由点击条数较多的一派决定
+  const CAMP={
+    '虚恋':{n:0,total:3,cls:'cx',doc:'https://www.kdocs.cn/l/ca4HqjZfLOVd',docName:'『宿命』板评原文'},
+    '病恋':{n:0,total:4,cls:'cb',doc:'https://www.kdocs.cn/l/cqAp5kCNX249',docName:'『轮回』话术原文'}
+  };
+  let ending=null;
   const btns=[...document.querySelectorAll('.aff-q')];
+  function paintCamp(){
+    const a=CAMP['虚恋'].n,b=CAMP['病恋'].n;
+    cxN.textContent=a;cbN.textContent=b;cxV.textContent=a;cbV.textContent=b;
+    cxBar.style.width=(a/CAMP['虚恋'].total*100)+'%';
+    cbBar.style.width=(b/CAMP['病恋'].total*100)+'%';
+    if(a===b){
+      campTip.textContent='虚恋 '+a+' : '+b+' 病恋 · '+(ending?'倾向持平 · 维持已解锁结局':'倾向未定');
+      return null;
+    }
+    const lead=a>b?'虚恋':'病恋',n=a>b?a:b;
+    campTip.textContent='虚恋 '+a+' : '+b+' 病恋 · '+lead+'领先';
+    if(n>=3)lockEnding(lead);
+    else if(ending)campTip.textContent='倾向持平 · 维持已解锁结局';
+    return lead;
+  }
+  function lockEnding(camp){
+    if(ending===camp)return;
+    ending=camp;
+    const c=CAMP[camp];
+    campEnd.className='camp-end show '+c.cls;
+    ceTitle.textContent=camp+' ENDING 已解锁 · 该派话术条数占优';
+    campLink.href=c.doc;campLinkTx.textContent=c.docName+'（'+camp+'线）';
+    campLink.style.display='inline-flex';
+    endLink.href=c.doc;endLinkTx.textContent=c.docName+'（'+camp+'线）';
+    endLink.style.display='inline-flex';
+    endCamp.textContent=camp+' HE';
+    endCampTx2.textContent=camp+'结局已写入存档';
+    const al=document.createElement('div');al.className='ln';
+    al.style.color=(camp==='虚恋'?'var(--cyan)':'var(--crimson)');
+    al.textContent='> 倾向判定：'+camp+' 线主导（'+c.n+' 条）· 解锁'+camp+'结局';
+    log.appendChild(al);log.scrollTop=log.scrollHeight;
+  }
   // 根据话术生成成就徽章
   const chips={};
   btns.forEach(btn=>{
@@ -718,17 +833,19 @@ function toast(msg,red){
   btns.forEach(btn=>{
     btn.addEventListener('click',()=>{
       if(btn.disabled)return;
-      const add=+btn.dataset.add,ach=btn.dataset.ach;
+      const add=+btn.dataset.add,ach=btn.dataset.ach,camp=btn.dataset.camp;
       btn.disabled=true;btn.classList.add('done');
       val=Math.min(100,val+add);got++;
+      if(CAMP[camp])CAMP[camp].n++;
       num.textContent=val;bar.style.width=val+'%';
       if(chips[ach]&&!chips[ach].classList.contains('on')){
         chips[ach].classList.add('on');
         achCount.textContent=got+' / '+btns.length;
       }
       const ln=document.createElement('div');ln.className='ln';
-      ln.textContent='> 亲密值 +'+add+' · 达成资料成就「'+ach+'」('+got+'/'+btns.length+')';
+      ln.textContent='> 亲密值 +'+add+' · 达成「'+ach+'」· 虚恋 '+CAMP['虚恋'].n+' : '+CAMP['病恋'].n+' 病恋';
       log.appendChild(ln);
+      paintCamp();
       if(got>=btns.length){
         const al=document.createElement('div');al.className='ln';
         al.style.color='var(--lime)';
