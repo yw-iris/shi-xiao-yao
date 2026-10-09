@@ -308,6 +308,7 @@ h2.title b.r{color:var(--crimson)}
 .camp-end.cx .ce-title{color:var(--cyan);text-shadow:0 0 12px rgba(0,229,255,.45)}
 .camp-end.cb{border:1px solid var(--crimson);background:rgba(255,36,64,.07);box-shadow:0 0 24px rgba(255,36,64,.14)}
 .camp-end.cb .ce-title{color:var(--crimson);text-shadow:0 0 12px rgba(255,36,64,.45)}
+.camp-links{display:flex;flex-direction:column;gap:8px;margin-top:12px}
 .camp-link{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--mono);
   font-size:12px;letter-spacing:.14em;color:var(--cyan);border:1px solid var(--line);
   background:rgba(0,229,255,.05);padding:9px 16px;margin-top:12px;cursor:none;transition:all .3s}
@@ -335,6 +336,20 @@ h2.title b.r{color:var(--crimson)}
 .poem-src{font-family:var(--mono);font-size:11px;letter-spacing:.28em;color:#8aa2b6;margin-top:26px}
 /* 文档跳转 */
 .doc-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.doc-groups{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+@media(max-width:680px){.doc-groups{grid-template-columns:1fr;gap:14px}}
+.doc-g .dg-h{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;
+  letter-spacing:.2em;text-transform:uppercase;justify-content:center}
+.doc-g .dg-h .dot{width:8px;height:8px;flex:none;border-radius:50%}
+.doc-g.cb .dg-h{color:var(--crimson)} .doc-g.cb .dg-h .dot{background:var(--crimson);box-shadow:0 0 12px var(--crimson)}
+.doc-g.cx .dg-h{color:var(--cyan)} .doc-g.cx .dg-h .dot{background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.doc-g .doc-links{margin-top:12px;flex-direction:column}
+.doc-link.cb{color:var(--crimson);border-color:var(--line-red);background:rgba(255,36,64,.06)}
+.doc-link.cb:hover{color:#fff;border-color:var(--crimson);background:rgba(255,36,64,.14);
+  box-shadow:0 0 20px rgba(255,36,64,.3)}
+.doc-link.cx{color:var(--cyan);border-color:var(--line);background:rgba(0,229,255,.05)}
+.doc-link.cx:hover{color:#fff;border-color:var(--cyan);background:rgba(0,229,255,.12);
+  box-shadow:0 0 20px rgba(0,229,255,.3)}
 .doc-link{display:inline-flex;align-items:center;gap:10px;text-decoration:none;
   font-family:var(--mono);font-size:13px;letter-spacing:.14em;color:var(--cyan);
   border:1px solid var(--line);background:rgba(0,229,255,.05);padding:11px 20px;
@@ -615,9 +630,7 @@ h2.title b.r{color:var(--crimson)}
         <div class="camp-end" id="campEnd">
           <div class="ce-lab">// ENDING UNLOCKED</div>
           <div class="ce-title" id="ceTitle"></div>
-          <a class="camp-link" id="campLink" target="_blank" rel="noopener" style="display:none">
-            <span class="ico">▣</span><span id="campLinkTx"></span><span class="go">↗</span>
-          </a>
+          <div class="camp-links" id="campLinks"></div>
         </div>
         <div class="he-badge" id="heBadge">检测到宿主对 npc 亲密度达 100%<br>解锁 HE 结局 · 正在传送回主世界</div>
       </div>
@@ -639,13 +652,32 @@ h2.title b.r{color:var(--crimson)}
         只为换取充满爱的一眼</b>
       </div>
       <div class="poem-src">—— 板评 · 「送给栩」 ——</div>
-      <div class="doc-links">
-        <a class="doc-link" href="https://www.kdocs.cn/l/ca4HqjZfLOVd" target="_blank" rel="noopener">
-          <span class="ico">▣</span><span>『宿命』板评原文</span><span class="go">↗</span>
-        </a>
-        <a class="doc-link" href="https://www.kdocs.cn/l/cqAp5kCNX249" target="_blank" rel="noopener">
-          <span class="ico">▣</span><span>『轮回』话术原文</span><span class="go">↗</span>
-        </a>
+      <div class="doc-groups">
+        <div class="doc-g cb" data-fx>
+          <div class="dg-h"><span class="dot"></span>病恋 · MORBID FILES</div>
+          <div class="doc-links">
+            <a class="doc-link cb" href="https://www.kdocs.cn/l/ca4HqjZfLOVd" target="_blank" rel="noopener">
+              <span class="ico">▣</span><span>『宿命』板评原文</span><span class="go">↗</span>
+            </a>
+            <a class="doc-link cb" href="https://www.kdocs.cn/l/cqAp5kCNX249" target="_blank" rel="noopener">
+              <span class="ico">▣</span><span>『轮回』话术原文</span><span class="go">↗</span>
+            </a>
+          </div>
+        </div>
+        <div class="doc-g cx" data-fx>
+          <div class="dg-h"><span class="dot"></span>虚恋 · ILLUSORY FILES</div>
+          <div class="doc-links">
+            <a class="doc-link cx" href="https://www.kdocs.cn/l/caLPE0Yaqrvx" target="_blank" rel="noopener">
+              <span class="ico">▣</span><span>虚恋 · 须知</span><span class="go">↗</span>
+            </a>
+            <a class="doc-link cx" href="https://www.kdocs.cn/l/codXHwOhik5R" target="_blank" rel="noopener">
+              <span class="ico">▣</span><span>虚恋 · 话术原文</span><span class="go">↗</span>
+            </a>
+            <a class="doc-link cx" href="https://www.kdocs.cn/l/caP8BgDu4At1" target="_blank" rel="noopener">
+              <span class="ico">▣</span><span>虚恋 · 板评原文</span><span class="go">↗</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -656,11 +688,7 @@ h2.title b.r{color:var(--crimson)}
     <div class="sec-tag" style="justify-content:center"><span class="id">SECTOR 08</span> ENDING // 达成HE</div>
     <h2>达成 <span class="g" id="endCamp">HE</span></h2>
     <p class="line">亲密度抵达 <em class="r">100%</em> 阈值。<br><em id="endCampTx2">结局已写入存档</em> · <em>主世界通道开启</em>。</p>
-    <div class="doc-links">
-      <a class="doc-link" id="endLink" target="_blank" rel="noopener" style="display:none">
-        <span class="ico">▣</span><span id="endLinkTx"></span><span class="go">↗</span>
-      </a>
-    </div>
+    <div class="doc-links" id="endLinks"></div>
     <div class="farewell">
       <span>「我舍不得她」</span>
       <span>「欢迎您下次光临」</span>
@@ -776,18 +804,24 @@ function toast(msg,red){
         panel=document.getElementById('affPanel'),
         achRow=document.getElementById('achRow'),achCount=document.getElementById('achCount'),
         campEnd=document.getElementById('campEnd'),ceTitle=document.getElementById('ceTitle'),
-        campLink=document.getElementById('campLink'),campLinkTx=document.getElementById('campLinkTx'),
+        campLinks=document.getElementById('campLinks'),endLinks=document.getElementById('endLinks'),
         campTip=document.getElementById('campTip'),
         cxN=document.getElementById('cxN'),cbN=document.getElementById('cbN'),
         cxV=document.getElementById('cxV'),cbV=document.getElementById('cbV'),
         cxBar=document.getElementById('cxBar'),cbBar=document.getElementById('cbBar'),
-        endCamp=document.getElementById('endCamp'),endLink=document.getElementById('endLink'),
-        endLinkTx=document.getElementById('endLinkTx'),endCampTx2=document.getElementById('endCampTx2');
+        endCamp=document.getElementById('endCamp'),endCampTx2=document.getElementById('endCampTx2');
   let val=0,got=0;
   // 阵营配置：结局由点击条数较多的一派决定
   const CAMP={
-    '虚恋':{n:0,total:3,cls:'cx',doc:'https://www.kdocs.cn/l/ca4HqjZfLOVd',docName:'『宿命』板评原文'},
-    '病恋':{n:0,total:4,cls:'cb',doc:'https://www.kdocs.cn/l/cqAp5kCNX249',docName:'『轮回』话术原文'}
+    '虚恋':{n:0,total:3,cls:'cx',docs:[
+      {nm:'虚恋 · 须知',url:'https://www.kdocs.cn/l/caLPE0Yaqrvx'},
+      {nm:'虚恋 · 话术原文',url:'https://www.kdocs.cn/l/codXHwOhik5R'},
+      {nm:'虚恋 · 板评原文',url:'https://www.kdocs.cn/l/caP8BgDu4At1'}
+    ]},
+    '病恋':{n:0,total:4,cls:'cb',docs:[
+      {nm:'『宿命』板评原文',url:'https://www.kdocs.cn/l/ca4HqjZfLOVd'},
+      {nm:'『轮回』话术原文',url:'https://www.kdocs.cn/l/cqAp5kCNX249'}
+    ]}
   };
   let ending=null;
   const btns=[...document.querySelectorAll('.aff-q')];
@@ -812,10 +846,10 @@ function toast(msg,red){
     const c=CAMP[camp];
     campEnd.className='camp-end show '+c.cls;
     ceTitle.textContent=camp+' ENDING 已解锁 · 该派话术条数占优';
-    campLink.href=c.doc;campLinkTx.textContent=c.docName+'（'+camp+'线）';
-    campLink.style.display='inline-flex';
-    endLink.href=c.doc;endLinkTx.textContent=c.docName+'（'+camp+'线）';
-    endLink.style.display='inline-flex';
+    campLinks.innerHTML=c.docs.map(d=>
+      '<a class="camp-link" href="'+d.url+'" target="_blank" rel="noopener"><span class="ico">▣</span><span>'+d.nm+'</span><span class="go">↗</span></a>').join('');
+    endLinks.innerHTML=c.docs.map(d=>
+      '<a class="doc-link '+c.cls+'" href="'+d.url+'" target="_blank" rel="noopener"><span class="ico">▣</span><span>'+d.nm+'</span><span class="go">↗</span></a>').join('');
     endCamp.textContent=camp+' HE';
     endCampTx2.textContent=camp+'结局已写入存档';
     const al=document.createElement('div');al.className='ln';
