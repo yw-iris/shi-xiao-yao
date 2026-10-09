@@ -656,6 +656,9 @@ h2.title b.r{color:var(--crimson)}
         <div class="doc-g cb" data-fx>
           <div class="dg-h"><span class="dot"></span>病恋 · MORBID FILES</div>
           <div class="doc-links">
+            <a class="doc-link cb" href="#notice">
+              <span class="ico">▣</span><span>病恋 · 须知（本页 SECTOR 05）</span><span class="go">↓</span>
+            </a>
             <a class="doc-link cb" href="https://www.kdocs.cn/l/ca4HqjZfLOVd" target="_blank" rel="noopener">
               <span class="ico">▣</span><span>『宿命』板评原文</span><span class="go">↗</span>
             </a>
@@ -819,6 +822,7 @@ function toast(msg,red){
       {nm:'虚恋 · 板评原文',url:'https://www.kdocs.cn/l/caP8BgDu4At1'}
     ]},
     '病恋':{n:0,total:4,cls:'cb',docs:[
+      {nm:'病恋 · 须知（本页 SECTOR 05）',url:'#notice',anchor:true},
       {nm:'『宿命』板评原文',url:'https://www.kdocs.cn/l/ca4HqjZfLOVd'},
       {nm:'『轮回』话术原文',url:'https://www.kdocs.cn/l/cqAp5kCNX249'}
     ]}
@@ -846,10 +850,10 @@ function toast(msg,red){
     const c=CAMP[camp];
     campEnd.className='camp-end show '+c.cls;
     ceTitle.textContent=camp+' ENDING 已解锁 · 该派话术条数占优';
-    campLinks.innerHTML=c.docs.map(d=>
-      '<a class="camp-link" href="'+d.url+'" target="_blank" rel="noopener"><span class="ico">▣</span><span>'+d.nm+'</span><span class="go">↗</span></a>').join('');
-    endLinks.innerHTML=c.docs.map(d=>
-      '<a class="doc-link '+c.cls+'" href="'+d.url+'" target="_blank" rel="noopener"><span class="ico">▣</span><span>'+d.nm+'</span><span class="go">↗</span></a>').join('');
+    const mk=(d,cls)=>'<a class="'+cls+'" href="'+d.url+'"'+(d.anchor?'':' target="_blank" rel="noopener"')+
+      '><span class="ico">▣</span><span>'+d.nm+'</span><span class="go">'+(d.anchor?'↓':'↗')+'</span></a>';
+    campLinks.innerHTML=c.docs.map(d=>mk(d,'camp-link')).join('');
+    endLinks.innerHTML=c.docs.map(d=>mk(d,'doc-link '+c.cls)).join('');
     endCamp.textContent=camp+' HE';
     endCampTx2.textContent=camp+'结局已写入存档';
     const al=document.createElement('div');al.className='ln';
