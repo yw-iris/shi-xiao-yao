@@ -269,29 +269,11 @@ h2.title b.r{color:var(--crimson)}
 .ach.on::before{content:'◈';filter:none;animation:blink .6s steps(2) 3}
 .aff-log{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:14px;min-height:54px;line-height:1.8}
 .aff-log .ln{color:var(--cyan)}
-/* 阵营：虚恋 / 病恋 */
-.cx-tx{color:var(--cyan);font-weight:700}
-.cb-tx{color:var(--crimson);font-weight:700}
-.camp-h{display:flex;align-items:center;gap:10px;margin:26px 0 12px;font-family:var(--mono);
-  font-size:12px;letter-spacing:.22em;text-transform:uppercase}
-.camp-h:first-child{margin-top:0}
-.camp-h .dot{width:8px;height:8px;flex:none;border-radius:50%}
-.camp-h.cx{color:var(--cyan)}
-.camp-h.cx .dot{background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
-.camp-h.cb{color:var(--crimson)}
-.camp-h.cb .dot{background:var(--crimson);box-shadow:0 0 12px var(--crimson)}
-.camp-h .cn{margin-left:auto;opacity:.7;letter-spacing:.12em}
-.aff-q.cx{border-left:2px solid var(--cyan)}
-.aff-q.cb{border-left:2px solid var(--crimson)}
-.aff-q.cx .gain{color:var(--cyan)}
-.aff-q.cx:hover{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,229,255,.18)}
-.aff-q.cx.done{border-color:var(--cyan)}
-.aff-q.cx.done .gain{color:var(--cyan)}
-.aff-q.cb.done{border-color:var(--crimson)}
-.aff-q.cb.done .gain{color:var(--crimson)}
+/* 阵营隐藏：话术条外观完全统一，解锁结局瞬间才揭晓 */
 .camp-head{display:flex;align-items:center;justify-content:space-between;margin-top:18px;gap:10px}
-.camp-head .lab{font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--cyan);text-transform:uppercase}
+.camp-head .lab{font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--dim);text-transform:uppercase}
 .camp-tip{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--dim);white-space:nowrap}
+.camp-tip.ok{color:var(--lime)}
 .camp-vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
 .camp-side .cs-top{display:flex;justify-content:space-between;font-family:var(--body);font-size:13px;
   letter-spacing:.12em;color:var(--cyan)}
@@ -300,6 +282,10 @@ h2.title b.r{color:var(--crimson)}
 .cs-bar i{position:absolute;left:0;top:0;bottom:0;width:0;transition:width .6s cubic-bezier(.16,1,.3,1)}
 .camp-side .cs-bar i{background:linear-gradient(90deg,var(--cyan),#8af6ff);box-shadow:0 0 12px rgba(0,229,255,.6)}
 .camp-side.b .cs-bar i{background:linear-gradient(90deg,var(--magenta),var(--crimson));box-shadow:0 0 12px rgba(255,36,64,.6)}
+.cs-bar i.unknown{background:rgba(160,180,200,.35);box-shadow:none;animation:scanBar 1.5s ease-in-out infinite}
+@keyframes scanBar{50%{opacity:.35}}
+#aff.reveal .aff-q[data-camp="虚恋"]{border-left:2px solid var(--cyan)}
+#aff.reveal .aff-q[data-camp="病恋"]{border-left:2px solid var(--crimson)}
 .camp-end{margin-top:16px;border:1px dashed var(--line);padding:14px;display:none}
 .camp-end.show{display:block}
 .camp-end .ce-lab{font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:var(--dim);text-transform:uppercase}
@@ -601,19 +587,16 @@ h2.title b.r{color:var(--crimson)}
     <div class="sec-tag"><span class="id">SECTOR 06</span> AFFECTION // 亲密度</div>
     <h2 class="title">正在检测 <b class="r">宿主好感值</b></h2>
     <div class="aff-hint"><span class="blink">▶</span> 点击话术体验，即可增加亲密值 · 达成对应资料成就</div>
-    <p class="lead">话术分 <b class="cx-tx">虚恋</b> / <b class="cb-tx">病恋</b> 两派 · 你点得多的那一派，将决定最终解锁的结局。</p>
+    <p class="lead">话术已打乱加密 · 你点得多的那一派，将决定最终解锁的结局 · 解锁瞬间揭晓阵营。</p>
     <div class="aff-wrap">
       <div>
-        <div class="camp-h cx" data-fx><span class="dot"></span><span class="nm">虚恋 · ILLUSORY LOVE</span><span class="cn">已选 <span id="cxN">0</span> / 3</span></div>
-        <button class="aff-q cx" data-fx data-add="10" data-camp="虚恋" data-ach="新奇感" data-log='已记录：“深怕落下一点关于我的——等待你自己去发现 才会有新奇感”'><span class="tag">A.</span>“深怕落下一点关于我的 可我偏不要——等待你自己去发现，才会有新奇感”<span class="gain">亲密度 +10</span></button>
-        <button class="aff-q cx" data-fx data-add="15" data-camp="虚恋" data-ach="来之不易的吻" data-log='已记录：“是担心这个吻来的太过容易 怕自己应付不来吗”'><span class="tag">C.</span>“是担心这个吻来的太过容易，怕自己应付不来吗”<span class="gain">亲密度 +15</span></button>
-        <button class="aff-q cx" data-fx data-add="20" data-camp="虚恋" data-ach="卸下防御" data-log='已记录：“你怕自己做不到 然后被指责 把错误都揽到自己身上 形成防御”'><span class="tag">G.</span>“你怕自己做不到，然后被指责——把错误都揽到自己身上，形成防御”<span class="gain">亲密度 +20</span></button>
-
-        <div class="camp-h cb" data-fx><span class="dot"></span><span class="nm">病恋 · MORBID LOVE</span><span class="cn">已选 <span id="cbN">0</span> / 4</span></div>
-        <button class="aff-q cb" data-fx data-add="10" data-camp="病恋" data-ach="被需要的痕迹" data-log='已记录：“我在你身上留下的痕迹——你说的你需要我”'><span class="tag">B.</span>“我在你身上留下的痕迹——你说的，你需要我”<span class="gain">亲密度 +10</span></button>
-        <button class="aff-q cb" data-fx data-add="15" data-camp="病恋" data-ach="哑巴游戏" data-log='已记录：“你想当哑巴 我不介意做的更过分一点”'><span class="tag">D.</span>“你想当哑巴，我不介意做得更过分一点”<span class="gain">亲密度 +15</span></button>
-        <button class="aff-q cb" data-fx data-add="15" data-camp="病恋" data-ach="危险心跳" data-log='已记录：“如果我扼住你的咽喉 下意识的你应该会求饶吧”'><span class="tag">E.</span>“如果我扼住你的咽喉收紧，下意识的你应该会求饶吧，这样狼狈”<span class="gain">亲密度 +15</span></button>
-        <button class="aff-q cb" data-fx data-add="15" data-camp="病恋" data-ach="十指相扣" data-log='已记录：“我能随时碾着你的手将你踩下去 也能拉着你的手 十指相扣”'><span class="tag">F.</span>“我能随时碾着你的手将你踩下去，也能拉着你的手，十指相扣”<span class="gain">亲密度 +15</span></button>
+        <button class="aff-q" data-fx data-add="10" data-camp="病恋" data-ach="被需要的痕迹" data-log='已记录：“我在你身上留下的痕迹——你说的你需要我”'><span class="tag">A.</span>“我在你身上留下的痕迹——你说的，你需要我”<span class="gain">亲密度 +10</span></button>
+        <button class="aff-q" data-fx data-add="10" data-camp="虚恋" data-ach="如鱼得水" data-log='已记录：“非要问具体喜欢什么——就像鱼天生离不开水 你我天生就该呼吸”'><span class="tag">B.</span>“非要问具体喜欢什么，我似乎回答不出——就像鱼天生离不开水，你我天生就该呼吸”<span class="gain">亲密度 +10</span></button>
+        <button class="aff-q" data-fx data-add="15" data-camp="病恋" data-ach="哑巴游戏" data-log='已记录：“你想当哑巴 我不介意做的更过分一点”'><span class="tag">C.</span>“你想当哑巴，我不介意做得更过分一点”<span class="gain">亲密度 +15</span></button>
+        <button class="aff-q" data-fx data-add="15" data-camp="虚恋" data-ach="定格喜欢" data-log='已记录：“具体的答案好像一个框 定格那些喜欢 一旦没了 也就不喜欢你了”'><span class="tag">D.</span>“具体的答案好像一个框，定格那些喜欢——一旦没了，也就不喜欢你了”<span class="gain">亲密度 +15</span></button>
+        <button class="aff-q" data-fx data-add="15" data-camp="病恋" data-ach="危险心跳" data-log='已记录：“如果我扼住你的咽喉 下意识的你应该会求饶吧”'><span class="tag">E.</span>“如果我扼住你的咽喉收紧，下意识的你应该会求饶吧，这样狼狈”<span class="gain">亲密度 +15</span></button>
+        <button class="aff-q" data-fx data-add="20" data-camp="虚恋" data-ach="不肯自私" data-log='已记录：“如果因为我的喜欢将你变得不像你 那我也太过自私了”'><span class="tag">F.</span>“如果因为我的喜欢将你变得不像你，那我也太过自私了”<span class="gain">亲密度 +20</span></button>
+        <button class="aff-q" data-fx data-add="15" data-camp="病恋" data-ach="十指相扣" data-log='已记录：“我能随时碾着你的手将你踩下去 也能拉着你的手 十指相扣”'><span class="tag">G.</span>“我能随时碾着你的手将你踩下去，也能拉着你的手，十指相扣”<span class="gain">亲密度 +15</span></button>
       </div>
       <div class="aff-panel" data-fx id="affPanel">
         <div class="lab">// AFFECTION LEVEL</div>
@@ -809,7 +792,6 @@ function toast(msg,red){
         campEnd=document.getElementById('campEnd'),ceTitle=document.getElementById('ceTitle'),
         campLinks=document.getElementById('campLinks'),endLinks=document.getElementById('endLinks'),
         campTip=document.getElementById('campTip'),
-        cxN=document.getElementById('cxN'),cbN=document.getElementById('cbN'),
         cxV=document.getElementById('cxV'),cbV=document.getElementById('cbV'),
         cxBar=document.getElementById('cxBar'),cbBar=document.getElementById('cbBar'),
         endCamp=document.getElementById('endCamp'),endCampTx2=document.getElementById('endCampTx2');
@@ -831,25 +813,29 @@ function toast(msg,red){
   const btns=[...document.querySelectorAll('.aff-q')];
   function paintCamp(){
     const a=CAMP['虚恋'].n,b=CAMP['病恋'].n;
-    cxN.textContent=a;cbN.textContent=b;cxV.textContent=a;cbV.textContent=b;
-    cxBar.style.width=(a/CAMP['虚恋'].total*100)+'%';
-    cbBar.style.width=(b/CAMP['病恋'].total*100)+'%';
-    if(a===b){
-      campTip.textContent='虚恋 '+a+' : '+b+' 病恋 · '+(ending?'倾向持平 · 维持已解锁结局':'倾向未定');
+    if(!ending){ // 阵营加密：不看得出谁是谁
+      cxV.textContent='?';cbV.textContent='?';
+      [cxBar,cbBar].forEach(b2=>{b2.classList.add('unknown');b2.style.width='32%';});
+      campTip.classList.remove('ok');
+      campTip.textContent='数据加密 · 解析中 ('+(a+b)+'/'+btns.length+')';
       return null;
     }
-    const lead=a>b?'虚恋':'病恋',n=a>b?a:b;
-    campTip.textContent='虚恋 '+a+' : '+b+' 病恋 · '+lead+'领先';
-    if(n>=3)lockEnding(lead);
-    else if(ending)campTip.textContent='倾向持平 · 维持已解锁结局';
-    return lead;
+    cxBar.classList.remove('unknown');cbBar.classList.remove('unknown');
+    cxV.textContent=a;cbV.textContent=b;
+    cxBar.style.width=(a/CAMP['虚恋'].total*100)+'%';
+    cbBar.style.width=(b/CAMP['病恋'].total*100)+'%';
+    campTip.classList.add('ok');
+    campTip.textContent='已揭晓 · 虚恋 '+a+' : '+b+' 病恋';
+    return a>b?'虚恋':(b>a?'病恋':null);
   }
   function lockEnding(camp){
     if(ending===camp)return;
     ending=camp;
-    const c=CAMP[camp];
+    document.getElementById('aff').classList.add('reveal');
+    paintCamp();
+    const c=CAMP[camp],a=CAMP['虚恋'].n,b=CAMP['病恋'].n;
     campEnd.className='camp-end show '+c.cls;
-    ceTitle.textContent=camp+' ENDING 已解锁 · 该派话术条数占优';
+    ceTitle.textContent=camp+' ENDING 已解锁 · 判定 虚恋 '+a+' : '+b+' 病恋';
     const mk=(d,cls)=>'<a class="'+cls+'" href="'+d.url+'"'+(d.anchor?'':' target="_blank" rel="noopener"')+
       '><span class="ico">▣</span><span>'+d.nm+'</span><span class="go">'+(d.anchor?'↓':'↗')+'</span></a>';
     campLinks.innerHTML=c.docs.map(d=>mk(d,'camp-link')).join('');
@@ -881,9 +867,14 @@ function toast(msg,red){
         achCount.textContent=got+' / '+btns.length;
       }
       const ln=document.createElement('div');ln.className='ln';
-      ln.textContent='> 亲密值 +'+add+' · 达成「'+ach+'」· 虚恋 '+CAMP['虚恋'].n+' : '+CAMP['病恋'].n+' 病恋';
+      ln.textContent='> 亲密值 +'+add+' · 达成「'+ach+'」('+got+'/'+btns.length+')';
       log.appendChild(ln);
-      paintCamp();
+      const lead=paintCamp();
+      if(!ending){
+        const a=CAMP['虚恋'].n,b=CAMP['病恋'].n;
+        if(a>=3&&a>b)lockEnding('虚恋');
+        else if(b>=3&&b>a)lockEnding('病恋');
+      }
       if(got>=btns.length){
         const al=document.createElement('div');al.className='ln';
         al.style.color='var(--lime)';
