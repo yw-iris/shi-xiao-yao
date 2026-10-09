@@ -256,6 +256,17 @@ h2.title b.r{color:var(--crimson)}
 .aff-bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--magenta),var(--crimson));
   box-shadow:0 0 14px rgba(255,36,64,.7);transition:width 1s cubic-bezier(.16,1,.3,1)}
 .aff-bar .ticks{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 9px,rgba(5,7,12,.6) 9px 10px)}
+.ach-head{display:flex;align-items:center;justify-content:space-between;margin-top:18px}
+.ach-head .lab{font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--cyan);text-transform:uppercase}
+.ach-count{font-family:var(--mono);font-size:13px;color:var(--lime);letter-spacing:.15em}
+.ach-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.ach{font-family:var(--body);font-size:12px;letter-spacing:.06em;color:var(--dim);
+  border:1px dashed var(--line);padding:5px 10px;opacity:.55;transition:all .4s;
+  display:flex;align-items:center;gap:6px}
+.ach::before{content:'🔒';font-size:10px;filter:grayscale(1)}
+.ach.on{color:var(--lime);border:1px solid var(--lime);opacity:1;background:rgba(132,255,42,.07);
+  box-shadow:0 0 12px rgba(132,255,42,.25);text-shadow:0 0 8px rgba(132,255,42,.5)}
+.ach.on::before{content:'◈';filter:none;animation:blink .6s steps(2) 3}
 .aff-log{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:14px;min-height:54px;line-height:1.8}
 .aff-log .ln{color:var(--cyan)}
 .he-badge{margin-top:16px;display:none;border:1px solid var(--crimson);padding:14px;text-align:center;
@@ -525,22 +536,24 @@ h2.title b.r{color:var(--crimson)}
     <div class="frame"></div><span class="corner2 tl"></span><span class="corner2 br"></span>
     <div class="sec-tag"><span class="id">SECTOR 06</span> AFFECTION // 亲密度</div>
     <h2 class="title">正在检测 <b class="r">宿主好感值</b></h2>
-    <div class="aff-hint"><span class="blink">▶</span> 点击话术体验，即可增加亲密值</div>
-    <p class="lead">每点选一条话术都会累积亲密值 · 集满 100% 自动解锁 HE 结局。</p>
+    <div class="aff-hint"><span class="blink">▶</span> 点击话术体验，即可增加亲密值 · 达成对应资料成就</div>
+    <p class="lead">每条话术对应一个资料成就 · 集齐 7 个成就 + 亲密值 100% 解锁 HE 结局。</p>
     <div class="aff-wrap">
       <div>
-        <button class="aff-q" data-fx data-add="10" data-log='已记录：“深怕落下一点关于我的——等待你自己去发现 才会有新奇感”'><span class="tag">A.</span>“深怕落下一点关于我的 可我偏不要——等待你自己去发现，才会有新奇感”<span class="gain">亲密度 +10</span></button>
-        <button class="aff-q" data-fx data-add="10" data-log='已记录：“我在你身上留下的痕迹——你说的你需要我”'><span class="tag">B.</span>“我在你身上留下的痕迹——你说的，你需要我”<span class="gain">亲密度 +10</span></button>
-        <button class="aff-q" data-fx data-add="15" data-log='已记录：“是担心这个吻来的太过容易 怕自己应付不来吗”'><span class="tag">C.</span>“是担心这个吻来的太过容易，怕自己应付不来吗”<span class="gain">亲密度 +15</span></button>
-        <button class="aff-q" data-fx data-add="15" data-log='已记录：“你想当哑巴 我不介意做的更过分一点”'><span class="tag">D.</span>“你想当哑巴，我不介意做得更过分一点”<span class="gain">亲密度 +15</span></button>
-        <button class="aff-q" data-fx data-add="15" data-log='已记录：“如果我扼住你的咽喉 下意识的你应该会求饶吧”'><span class="tag">E.</span>“如果我扼住你的咽喉收紧，下意识的你应该会求饶吧，这样狼狈”<span class="gain">亲密度 +15</span></button>
-        <button class="aff-q" data-fx data-add="15" data-log='已记录：“我能随时碾着你的手将你踩下去 也能拉着你的手 十指相扣”'><span class="tag">F.</span>“我能随时碾着你的手将你踩下去，也能拉着你的手，十指相扣”<span class="gain">亲密度 +15</span></button>
-        <button class="aff-q" data-fx data-add="20" data-log='已记录：“你怕自己做不到 然后被指责 把错误都揽到自己身上 形成防御”'><span class="tag">G.</span>“你怕自己做不到，然后被指责——把错误都揽到自己身上，形成防御”<span class="gain">亲密度 +20</span></button>
+        <button class="aff-q" data-fx data-add="10" data-ach="新奇感" data-log='已记录：“深怕落下一点关于我的——等待你自己去发现 才会有新奇感”'><span class="tag">A.</span>“深怕落下一点关于我的 可我偏不要——等待你自己去发现，才会有新奇感”<span class="gain">亲密度 +10</span></button>
+        <button class="aff-q" data-fx data-add="10" data-ach="被需要的痕迹" data-log='已记录：“我在你身上留下的痕迹——你说的你需要我”'><span class="tag">B.</span>“我在你身上留下的痕迹——你说的，你需要我”<span class="gain">亲密度 +10</span></button>
+        <button class="aff-q" data-fx data-add="15" data-ach="来之不易的吻" data-log='已记录：“是担心这个吻来的太过容易 怕自己应付不来吗”'><span class="tag">C.</span>“是担心这个吻来的太过容易，怕自己应付不来吗”<span class="gain">亲密度 +15</span></button>
+        <button class="aff-q" data-fx data-add="15" data-ach="哑巴游戏" data-log='已记录：“你想当哑巴 我不介意做的更过分一点”'><span class="tag">D.</span>“你想当哑巴，我不介意做得更过分一点”<span class="gain">亲密度 +15</span></button>
+        <button class="aff-q" data-fx data-add="15" data-ach="危险心跳" data-log='已记录：“如果我扼住你的咽喉 下意识的你应该会求饶吧”'><span class="tag">E.</span>“如果我扼住你的咽喉收紧，下意识的你应该会求饶吧，这样狼狈”<span class="gain">亲密度 +15</span></button>
+        <button class="aff-q" data-fx data-add="15" data-ach="十指相扣" data-log='已记录：“我能随时碾着你的手将你踩下去 也能拉着你的手 十指相扣”'><span class="tag">F.</span>“我能随时碾着你的手将你踩下去，也能拉着你的手，十指相扣”<span class="gain">亲密度 +15</span></button>
+        <button class="aff-q" data-fx data-add="20" data-ach="卸下防御" data-log='已记录：“你怕自己做不到 然后被指责 把错误都揽到自己身上 形成防御”'><span class="tag">G.</span>“你怕自己做不到，然后被指责——把错误都揽到自己身上，形成防御”<span class="gain">亲密度 +20</span></button>
       </div>
       <div class="aff-panel" data-fx id="affPanel">
         <div class="lab">// AFFECTION LEVEL</div>
         <div class="aff-num"><span id="affNum">0</span><span class="pc">%</span></div>
         <div class="aff-bar"><i id="affBar"></i><div class="ticks"></div></div>
+        <div class="ach-head"><span class="lab">// DATA ACHIEVEMENTS</span><span class="ach-count" id="achCount">0 / 7</span></div>
+        <div class="ach-row" id="achRow"></div>
         <div class="aff-log" id="affLog"><span class="ln">&gt; 等待宿主输入话术…</span></div>
         <div class="he-badge" id="heBadge">检测到宿主对 npc 亲密度达 100%<br>解锁 HE 结局 · 正在传送回主世界</div>
       </div>
@@ -687,21 +700,42 @@ function toast(msg,red){
   });
 })();
 
-/* ===== 亲密度交互 ===== */
+/* ===== 亲密度 + 资料成就 交互 ===== */
 (function(){
   const num=document.getElementById('affNum'),bar=document.getElementById('affBar'),
         log=document.getElementById('affLog'),badge=document.getElementById('heBadge'),
-        panel=document.getElementById('affPanel');
-  let val=0;
-  document.querySelectorAll('.aff-q').forEach(btn=>{
+        panel=document.getElementById('affPanel'),
+        achRow=document.getElementById('achRow'),achCount=document.getElementById('achCount');
+  let val=0,got=0;
+  const btns=[...document.querySelectorAll('.aff-q')];
+  // 根据话术生成成就徽章
+  const chips={};
+  btns.forEach(btn=>{
+    const name=btn.dataset.ach;
+    const c=document.createElement('span');c.className='ach';c.textContent=name;
+    achRow.appendChild(c);chips[name]=c;
+  });
+  btns.forEach(btn=>{
     btn.addEventListener('click',()=>{
       if(btn.disabled)return;
-      const add=+btn.dataset.add;btn.disabled=true;btn.classList.add('done');
-      val=Math.min(100,val+add);
+      const add=+btn.dataset.add,ach=btn.dataset.ach;
+      btn.disabled=true;btn.classList.add('done');
+      val=Math.min(100,val+add);got++;
       num.textContent=val;bar.style.width=val+'%';
+      if(chips[ach]&&!chips[ach].classList.contains('on')){
+        chips[ach].classList.add('on');
+        achCount.textContent=got+' / '+btns.length;
+      }
       const ln=document.createElement('div');ln.className='ln';
-      ln.textContent='> '+btn.dataset.log+' · 亲密度 +'+add;
-      log.appendChild(ln);log.scrollTop=log.scrollHeight;
+      ln.textContent='> 亲密值 +'+add+' · 达成资料成就「'+ach+'」('+got+'/'+btns.length+')';
+      log.appendChild(ln);
+      if(got>=btns.length){
+        const al=document.createElement('div');al.className='ln';
+        al.style.color='var(--lime)';
+        al.textContent='> 资料成就 7/7 全部达成 · 隐藏档案已解密';
+        log.appendChild(al);
+      }
+      log.scrollTop=log.scrollHeight;
       // 浮动 +N
       const fl=document.createElement('div');fl.className='float-gain';fl.textContent='+'+add;
       panel.appendChild(fl);
